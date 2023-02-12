@@ -59,7 +59,7 @@ public class UserController {
 
     ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer userId){
         this.userService.deleteUser(userId);
-        return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully", false), HttpStatus.OK);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully", true), HttpStatus.OK);
     }
 
 
