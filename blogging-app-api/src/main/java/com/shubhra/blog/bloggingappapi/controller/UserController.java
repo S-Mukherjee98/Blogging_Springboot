@@ -19,6 +19,8 @@ import com.shubhra.blog.bloggingappapi.payload.ApiResponse;
 import com.shubhra.blog.bloggingappapi.payload.UserDto;
 import com.shubhra.blog.bloggingappapi.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -29,7 +31,7 @@ public class UserController {
     //Post-Create User
 
     @PostMapping("/")
-    ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+    ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
       UserDto userDtoCreated=  this.userService.createUser(userDto);
       return new ResponseEntity<UserDto>(userDtoCreated, HttpStatus.CREATED);
     }
@@ -38,7 +40,7 @@ public class UserController {
     //Put- Update user
 
     @PutMapping("/{userId}")
-    ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable("userId") Integer uid){
+    ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") Integer uid){
         UserDto uDto= this.userService.updateUser(userDto, uid);
         return ResponseEntity.ok(uDto);
     }
