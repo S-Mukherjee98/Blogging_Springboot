@@ -2,11 +2,15 @@ package com.shubhra.blog.bloggingappapi.service.impl;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collector;
+
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import org.springframework.stereotype.Service;
 
 import com.shubhra.blog.bloggingappapi.entity.Category;
@@ -74,10 +78,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPost() {
+    public List<PostDto> getAllPost(Integer pageNumber,Integer pageSize) {
         
-        List<Post> posts= this.postRepo.findAll();
-        List<PostDto> pdtos =posts.stream().map(post->this.modelMapper.map(post,PostDto.class)).collect(Collectors.toList());
+        
+        PageRequest p=PageRequest.of(pageNumber, pageSize);
+        
+        
+
+
+        Page<Post> pagePosts= this.postRepo.findAll(p);
+        List<Post> allpost=pagePosts.getContent();
+        List<PostDto> pdtos =allpost.stream().map(post->this.modelMapper.map(post,PostDto.class)).collect(Collectors.toList());
         return pdtos;
     }
 
