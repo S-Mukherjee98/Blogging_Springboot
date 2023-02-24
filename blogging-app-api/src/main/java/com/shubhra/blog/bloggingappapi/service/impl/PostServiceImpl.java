@@ -18,6 +18,7 @@ import com.shubhra.blog.bloggingappapi.entity.Post;
 import com.shubhra.blog.bloggingappapi.entity.User;
 import com.shubhra.blog.bloggingappapi.exception.ResourceNotFound;
 import com.shubhra.blog.bloggingappapi.payload.PostDto;
+import com.shubhra.blog.bloggingappapi.payload.PostResponse;
 import com.shubhra.blog.bloggingappapi.repository.PostRepo;
 import com.shubhra.blog.bloggingappapi.repository.UserRepo;
 import com.shubhra.blog.bloggingappapi.repository.CategoryRepo;
@@ -78,7 +79,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPost(Integer pageNumber,Integer pageSize) {
+    public PostResponse getAllPost(Integer pageNumber,Integer pageSize, String sortBy) {
         
         
         PageRequest p=PageRequest.of(pageNumber, pageSize);
@@ -89,7 +90,15 @@ public class PostServiceImpl implements PostService {
         Page<Post> pagePosts= this.postRepo.findAll(p);
         List<Post> allpost=pagePosts.getContent();
         List<PostDto> pdtos =allpost.stream().map(post->this.modelMapper.map(post,PostDto.class)).collect(Collectors.toList());
-        return pdtos;
+
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(pdtos);
+        postResponse.setPageNumber(pagePosts.getNumber());
+        postResponse.setPageSize(pagePosts.getSize());
+        postResponse.setTotalPage(pagePosts.getTotalPages());
+        postResponse.setLastPage(pagePosts.isLast());
+        postResponse.setTotalElements(pagePosts.getTotalElements());
+        return postResponse;
     }
 
     @Override

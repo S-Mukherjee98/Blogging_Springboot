@@ -22,6 +22,7 @@ public class CategoryServiceImpl implements CategoryService  {
     @Autowired
     private ModelMapper modelMapper;
 
+    //create Category
     @Override
     public CategoryDto createCategory(CategoryDto categoryDto) {
         // TODO Auto-generated method stub
@@ -31,6 +32,7 @@ public class CategoryServiceImpl implements CategoryService  {
         return this.modelMapper.map(added, CategoryDto.class);
     }
 
+    //Update Category
     @Override
     public CategoryDto updateCategory(CategoryDto categoryDto, Integer categoryId) {
         // TODO Auto-generated method stub

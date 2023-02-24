@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shubhra.blog.bloggingappapi.entity.Post;
 import com.shubhra.blog.bloggingappapi.payload.PostDto;
+import com.shubhra.blog.bloggingappapi.payload.PostResponse;
 
 public interface PostService {
     
@@ -17,7 +18,7 @@ public interface PostService {
     void deletePost(Integer postId);
 
     //get all posts
-    List<PostDto> getAllPost(Integer pageNumber, Integer pageSize);
+    PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy);
 
     //get post by post Id
     PostDto getPostByPostId(Integer postId);
