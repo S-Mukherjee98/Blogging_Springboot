@@ -7,30 +7,29 @@ import com.shubhra.blog.bloggingappapi.payload.PostDto;
 import com.shubhra.blog.bloggingappapi.payload.PostResponse;
 
 public interface PostService {
-    
-    //create post
-    PostDto createPost(PostDto postDto,Integer userId,Integer catId);
 
-    //Update Post
-    PostDto updatePost(PostDto postDto,Integer postId);
+    // create post
+    PostDto createPost(PostDto postDto, Integer userId, Integer catId);
 
-    //Delete
+    // Update Post
+    PostDto updatePost(PostDto postDto, Integer postId);
+
+    // Delete
     void deletePost(Integer postId);
 
-    //get all posts
+    // get all posts
     PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy);
 
-    //get post by post Id
+    // get post by post Id
     PostDto getPostByPostId(Integer postId);
 
-    //get posts by category
+    // get posts by category
     List<PostDto> getPostByCategory(Integer categoryId);
 
-    //get posts by user
+    // get posts by user
     List<PostDto> getPostByUser(Integer userId);
 
-    //search post
-    List<Post> searchPost(String keyword);
-
+    // search post
+    List<PostDto> searchPost(String keyword);
 
 }

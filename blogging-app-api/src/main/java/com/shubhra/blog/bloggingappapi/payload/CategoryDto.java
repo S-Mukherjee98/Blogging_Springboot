@@ -1,6 +1,8 @@
 package com.shubhra.blog.bloggingappapi.payload;
 
-import jakarta.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
+
+// import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,8 +14,7 @@ public class CategoryDto {
     private Integer categoryId;
     @NotEmpty(message = "Category title must have to provide")
     private String categoryTitle;
-    @NotEmpty(message="Category Description Must have to provide")
+    @NotEmpty(message = "Category Description Must have to provide")
     private String categoryDescription;
 
-    
 }
