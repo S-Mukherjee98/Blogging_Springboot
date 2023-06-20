@@ -1,6 +1,10 @@
 package com.shubhra.blog.bloggingappapi.payload;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.shubhra.blog.bloggingappapi.entity.Comment;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +23,6 @@ public class PostDto {
     private Date addedDate;
     private CategoryDto category;
     private UserDto user;
+    private List<CommentDto> comments = new ArrayList<>();
 
 }
